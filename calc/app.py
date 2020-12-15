@@ -35,3 +35,13 @@ def route_div():
     a = int(request.args["a"])
     b = int(request.args["b"])
     return str(div(a, b))
+
+
+@app.route("/math/<task>")
+def math_task(task):
+    """perform add, sub, mult, div using math route"""
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    task_dict = {"add": add(a, b), "sub": sub(a, b), "mult": mult(a, b), "div": div(a, b)}
+    op_func = task_dict[task]
+    return str(op_func)
